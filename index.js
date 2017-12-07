@@ -5,7 +5,8 @@
  */
 
 // var program = require('commander');
-//
+var yargs = require('yargs');
+
 // program
 //     .version('0.1.0')
 //     .command('change commit message', 'Edit last commit message')
@@ -23,46 +24,34 @@
 // console.log('  - %s cheese', program.cheese);
 //
 
-const vorpal = require('vorpal')();
-
 const spawn = require('child_process').spawn;
 const exec = require('child_process').exec;
 
-vorpal
-    .command('edit last commit message', 'Edit last commit message.')
-    .alias('elcm')
-    .action(function (args, callback) {
-        console.log('processing args=%s', args);
-        var cmd = 'git commit --amend';
-        console.log('executing %s', cmd);
-        execute('git', ['commit', '--amend'], function () {
-            callback();
-        })
-    });
+require('./commands/remove-last-commit')(yargs);
 
-vorpal
-    .command('ls', 'list files in directory')
-    .action(function (args, callback) {
-        console.log('processing args=%s', args);
-        execute('ls', [], function () {
-            callback();
-        })
-    });
-
-vorpal
-    .command('stringify')
-    .option('-a, --amount <amt>', 'A number to stringify.')
-    .types({
-        string: ['a', 'amount']
-    })
-    .action(function (args, callback) {
-        this.log(args.options);
-        callback();
-    });
-
-vorpal
-    .delimiter('myapp$')
-    .show();
+// vorpal
+//     .command('ls', 'list files in directory')
+//     .action(function (args, callback) {
+//         console.log('processing args=%s', args);
+//         execute('ls', [], function () {
+//             callback();
+//         })
+//     });
+//
+// vorpal
+//     .command('stringify')
+//     .option('-a, --amount <amt>', 'A number to stringify.')
+//     .types({
+//         string: ['a', 'amount']
+//     })
+//     .action(function (args, callback) {
+//         this.log(args.options);
+//         callback();
+//     });
+//
+// vorpal
+//     .delimiter('myapp$')
+//     .show();
 
 function execute(command, arguments, callback) {
     // child = spawn('ls', ['-lh', '/usr']);
@@ -78,7 +67,7 @@ function execute(command, arguments, callback) {
     child.stdout.pipe(process.stdout);
 
     process.stdin.on('data', function (data) {
-        console.log('process.stdin!');
+        // console.log('process.stdin!');
         child.stdin.write(data);
     });
 
