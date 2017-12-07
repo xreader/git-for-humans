@@ -22,9 +22,6 @@ module.exports = function(yargs){
 
                 var cmd = 'git reset HEAD^ --hard';
                 console.log('executing %s', cmd);
-                // response = executer.execute('git', ['commit', '--amend'], function () {
-                //     callback();
-                // })
                 response = executer.executeBatch(commands, function () {
                     callback();
                 })
