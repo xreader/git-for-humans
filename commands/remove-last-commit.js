@@ -27,7 +27,5 @@ module.exports = function(yargs){
                 })
             }
         )
-        .help()
-        .argv
 
 }
