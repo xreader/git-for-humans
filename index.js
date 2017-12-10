@@ -8,6 +8,11 @@ var yargs = require('yargs');
 
 require('./commands/remove-last-commit')(yargs);
 require('./commands/list')(yargs);
+require('./commands/last-commit')(yargs);
+
+yargs.help()
+    .argv
+
 
 stdin = process.stdin;
 stdin.setEncoding('utf8');
