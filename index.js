@@ -48,7 +48,6 @@ commands.forEach(function (cmd) {
 
 yargs.help().argv
 
-
 stdin = process.stdin;
 stdin.setEncoding('utf8');
 stdin.setRawMode(true);
