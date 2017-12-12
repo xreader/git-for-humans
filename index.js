@@ -6,12 +6,47 @@
 
 var yargs = require('yargs');
 
-require('./commands/remove-last-commit')(yargs);
-require('./commands/list')(yargs);
-require('./commands/last-commit')(yargs);
+var commands = [
+    {
+        command:'change author',
+        description:'Change wrong name and email in last commit',
+        mappedCommand : [
+            {command: 'git', arguments: 'commit --amend --author "{{name}} <{{email}}>"'},
+        ],
+        options: [
+            {name: 'email', settings: {describe: 'new email'}},
+            {name: 'name', settings: {describe: 'new author name'}},
+        ]
+    },
+    {
+        command:'show last commit',
+        description:'What did I just commit?',
+        mappedCommand : [
+            {command: 'git', arguments: 'log -n1 -p'},
+        ],
+        options: []
+    },
+    {
+        command:'remove last commit',
+        description:'Delete or remove last commit',
+        mappedCommand : [
+            {command: 'git', arguments: 'reset HEAD^ --hard'},
+            {command: 'git', arguments: 'commit --amend'}
+        ],
+        options: []
+    }
 
-yargs.help()
-    .argv
+];
+
+
+var command = require('./commands/command');
+
+commands.forEach(function (cmd) {
+    command(yargs, cmd);
+})
+
+
+yargs.help().argv
 
 
 stdin = process.stdin;

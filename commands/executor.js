@@ -16,7 +16,7 @@ function executeBatch (commands) {
 exports.executeBatch = executeBatch;
 
 function execute (command, arguments, callback) {
-    child = exec(command + ' ' + arguments.join(' '));
+    child = exec(command + ' ' + arguments);
 
     child.stdout.pipe(process.stdout);
     child.on('close', function (code) {
