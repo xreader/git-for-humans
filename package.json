@@ -1,0 +1,28 @@
+{
+  "name": "git-for-humans",
+  "version": "0.0.1",
+  "description": "Humanized wrapper for git",
+  "main": "index.js",
+  "dependencies": {
+    "mustache": "^2.3.0",
+    "split": "^1.0.1",
+    "yargs": "^10.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xreader/git-for-humans.git"
+  },
+  "keywords": [
+    "git"
+  ],
+  "author": "xreader@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xreader/git-for-humans/issues"
+  },
+  "homepage": "https://github.com/xreader/git-for-humans#readme"
+}
