@@ -13,13 +13,15 @@
         {
           "name": "email",
           "settings": {
-            "describe": "new email"
+            "describe": "new email",
+            "required": true
           }
         },
         {
           "name": "name",
           "settings": {
-            "describe": "new author name"
+            "describe": "new author name",
+            "required": true
           }
         }
       ]
@@ -48,6 +50,26 @@
           "arguments": "commit --amend"}
       ],
       "options": []
+    },
+    {
+    "command": "remove file",
+      "description": "Remove a file from the previous commit",
+      "mappedCommand": [
+        {
+          "command": "git",
+          "arguments": "rm --cached {{file}}"
+        }
+      ],
+      "options": [
+        {
+          "name": "file",
+          "settings": {
+            "describe": "file name",
+            "required": true
+          }
+        }
+      ]
     }
+
 
   ]}
