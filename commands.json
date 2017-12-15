@@ -57,12 +57,12 @@
       "mappedCommand": [
         {
           "command": "git",
-          "arguments": "rm --cached {{file}}"
+          "arguments": "rm --cached {{{fileName}}}"
         }
       ],
       "options": [
         {
-          "name": "file",
+          "name": "fileName",
           "settings": {
             "describe": "file name",
             "required": true
