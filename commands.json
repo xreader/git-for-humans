@@ -53,22 +53,130 @@
     },
     {
     "command": "remove file",
-      "description": "Remove a file from the previous commit",
+      "description": "Remove a file from the previous commit. \nThis is particularly useful when you have an open patch and you have committed an unnecessary file, and need to force push to update the patch on a remote.",
       "mappedCommand": [
         {
           "command": "git",
-          "arguments": "rm --cached {{{fileName}}}"
+          "arguments": "rm --cached {{{myfile}}}"
+        },
+        {
+          "command": "git",
+          "arguments": "commit --amend --no-edit"
         }
       ],
       "options": [
         {
-          "name": "fileName",
+          "name": "myfile",
           "settings": {
             "describe": "file name",
             "required": true
           }
         }
       ]
+    },
+    {
+    "command": "remove changes for a file",
+      "description": "In order to remove changes for a file from the previous commit \nThe commit message is keeped unchanged.",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout HEAD^ {{{myfile}}}"},
+        { "command": "git","arguments": "add {{{myfile}}}"},
+        { "command": "git","arguments": "commit --amend --no-edit"}
+      ],
+      "options": [
+        {
+          "name": "myfile",
+          "settings": {
+            "describe": "file name",
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+    "command": "remove commit",
+      "description": "Reset Git to the state it was in before you made your last commit (while keeping your staged changes).",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --soft HEAD@{1}"}
+      ],
+      "options": []
+    },
+    {
+    "command": "remove arbitrary commit",
+      "description": "it will irreversibly change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.\nDo an interactive rebase instead and remove the line(s) corresponding to commit(s) you want to see removed",
+      "mappedCommand": [
+        { "command": "git","arguments": "rebase --onto SHA1_OF_BAD_COMMIT^ SHA1_OF_BAD_COMMIT"},
+        { "command": "git","arguments": "push --force-with-lease [remote] [branch]"}
+      ],
+      "options": [{
+        "name": "remote",
+        "settings": {
+          "describe": "remote name",
+          "required": true
+        }
+      },
+        {
+          "name": "branch",
+          "settings": {
+            "describe": "branch name",
+            "required": true
+          }
+        }]
+    },
+    {
+    "command": "remove pushed commit",
+      "description": "Remove last commit. \nIf you need to delete pushed commits, you can use the following. However, it will irreversibly change your history, and mess up the history of anyone else who had already pulled from the repository. In short, if you're not sure, you should never do this, ever.",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset HEAD^ --hard"},
+        { "command": "git","arguments": "push --force-with-lease"}
+      ],
+      "options": [
+        {
+          "name": "remote",
+          "settings": {
+            "describe": "remote name",
+            "required": true
+          }
+        },
+        {
+          "name": "branch",
+          "settings": {
+            "describe": "branch name",
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+    "command": "push rejected commit",
+      "description": "push my amended commit to a remote that was rejected with an error message.\nIn general, avoid force pushing. It is best to create and push a new commit rather than force-pushing the amended commit as it will cause conflicts in the source history for any other developer who has interacted with the branch in question or any child branches.",
+      "mappedCommand": [
+        { "command": "git","arguments": "push origin {{{branch}}} --force-with-lease"}
+      ],
+      "options": [
+        {
+          "name": "branch",
+          "settings": {
+            "describe": "branch name",
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+    "command": "undo hard reset",
+      "description": "if you accidentally did a hard reset, and want the changes back.",
+      "mappedCommand": [
+        { "command": "git","arguments": "reflog"}
+      ],
+      "options": []
+    },
+    {
+    "command": "commit staged changes",
+      "description": "add staged changes to the previous commit.",
+      "mappedCommand": [
+        { "command": "git","arguments": "commit --amend"}
+      ],
+      "options": []
     }
 
 
