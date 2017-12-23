@@ -177,6 +177,336 @@
         { "command": "git","arguments": "commit --amend"}
       ],
       "options": []
+    },
+    {
+    "command": "reset added files",
+      "description": "Reset added files.",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset HEAD"}
+      ],
+      "options": []
+    },
+    {
+      "command": "reset added file",
+      "description": "Reset added file.",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset HEAD {{{myfile}}}"}
+      ],
+      "options": [{
+        "name": "myfile",
+        "settings": {
+          "describe": "file name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "stage unstaged and unstage staged edits",
+      "description": "Stage unstaged edits, and unstage staged edits.",
+      "mappedCommand": [
+        { "command": "git","arguments": "stash -k"},
+        { "command": "git","arguments": "reset --hard"},
+        { "command": "git","arguments": "stash pop"},
+        { "command": "git","arguments": "add -A"}
+      ],
+      "options": []
+    },
+    {
+      "command": "move edits to branch",
+      "description": "Move unstaged edits to a new branch.",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout -b {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "branch name",
+          "required": false
+        }
+      }]
+    },
+    {
+      "command": "move edits to existing branch",
+      "description": "Move my unstaged edits to a different, existing branch.",
+      "mappedCommand": [
+        { "command": "git","arguments": "stash"},
+        { "command": "git","arguments": "checkout -b {{{branch}}}"},
+        { "command": "git","arguments": "stash pop"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "branch name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "discard changes",
+      "description": "Discard my local uncommitted changes (staged and unstaged).",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --hard"}
+      ],
+      "options": []
+    },
+    {
+      "command": "undo add",
+      "description": "Unstage all files you might have staged with git add.",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset"}
+      ],
+      "options": []
+    },
+    {
+      "command": "revert",
+      "description": "Revert all local uncommitted changes (should be executed in repo root).",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout ."}
+      ],
+      "options": []
+    },
+    {
+      "command": "revert file",
+      "description": "Revert uncommitted changes to a particular file or directory.",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout {{{myfile}}}"}
+      ],
+      "options": [{
+        "name": "myfile",
+        "settings": {
+          "describe": "file name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "revert all",
+      "description": "Another way to revert all uncommitted changes (longer to type, but works from any subdirectory).",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --hard HEAD"}
+      ],
+      "options": []
+    },
+    {
+      "command": "remove untracked files",
+      "description": "Remove all local untracked files, so only files tracked by Git remain.",
+      "mappedCommand": [
+        { "command": "git","arguments": "clean -fdx"}
+      ],
+      "options": []
+    },
+    {
+      "command": "discard specific unstaged changes",
+      "description": "Get rid of some, but not all changes in your working copy (interactively).\nCheckout undesired changes, keep good changes.\nAnswer y to all of the snippets you want to drop",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout -p"}
+      ],
+      "options": []
+    },
+    {
+      "command": "reapply specific unstaged changes",
+      "description": "Another strategy to discard specific changes involves using stash. Stash all the good changes, reset working copy, and reapply good changes",
+      "mappedCommand": [
+        { "command": "git","arguments": "stash -p"},
+        { "command": "git","arguments": "reset --hard"},
+        { "command": "git","arguments": "stash pop"}
+      ],
+      "options": []
+    },
+    {
+      "command": "discard specific unstaged files",
+      "description": "When you want to get rid of one specific file in your working copy.",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout {{{myfile}}}"}
+      ],
+      "options": [{
+        "name": "myfile",
+        "settings": {
+          "describe": "file name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "create branch from commit",
+      "description": "Create a branch from a commit.",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout -b {{{branch}}} {{{commit}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "branch name",
+          "required": true
+        }
+      },{
+        "name": "commit",
+        "settings": {
+          "describe": "Sha of commit",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "reset branch to commit",
+      "description": "Simply reset your branch back to the desired commit pulled from/into the wrong branch.\nUse 'git reflog' first  to see where your HEAD pointed before the bad pull",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --hard {{{commit}}}"}
+      ],
+      "options": [{
+        "name": "commit",
+        "settings": {
+          "describe": "Sha of commit",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "reset branch to branch",
+      "description": "Discard local commits so my branch is the same as one on the server",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --hard origin/{{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "Name of origin branch",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "move changes to branch",
+      "description": "Move wrongly committed changes to a new branch.\n First find out what the SHA1 of commit hash you want to set your master branch with `git log`",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset branch {{{branch}}}"},
+        { "command": "git","arguments": "reset --hard HEAD^"},
+        { "command": "git","arguments": "reset --hard {{{commit}}}"},
+        { "command": "git","arguments": "checkout {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "Name of origin branch",
+          "required": true
+        }
+      },{
+        "name": "commit",
+        "settings": {
+          "describe": "SHA of commit",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "delete deleted local branches",
+      "description": "Delete local branches that were deleted upstream (remote).",
+      "mappedCommand": [
+        { "command": "git","arguments": "fetch -p upstream"}
+      ],
+      "options": []
+    },
+    {
+      "command": "delete remote branch",
+      "description": "Delete a remote branch",
+      "mappedCommand": [
+        { "command": "git","arguments": "push origin --delete {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "Name of branch",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "delete local not been merged branch",
+      "description": "Delete a local branch that has not been merged to the current branch or an upstream",
+      "mappedCommand": [
+        { "command": "git","arguments": "branch -D {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "Name of branch",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "rename current branch",
+      "description": "Rename the current (local) branch",
+      "mappedCommand": [
+        { "command": "git","arguments": "branch -m {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "New name of branch",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "rename branch",
+      "description": "Rename a different (local) branch",
+      "mappedCommand": [
+        { "command": "git","arguments": "branch -m {{{old-name}}} {{{new-name}}}"}
+      ],
+      "options": [{
+        "name": "old-name",
+        "settings": {
+          "describe": "Current name of branch",
+          "required": true
+        }
+      },{
+        "name": "new-name",
+        "settings": {
+          "describe": "New name of branch",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "create remote branch",
+      "description": "Create a new remote branch from current local one",
+      "mappedCommand": [
+        { "command": "git","arguments": "push {{{remote}}} {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "remote",
+        "settings": {
+          "describe": "Remote name",
+          "required": true
+        }
+      },{
+        "name": "branch",
+        "settings": {
+          "describe": "New remote branch name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "set remote branch as upstream",
+      "description": "Set a remote branch as the upstream for a local branch",
+      "mappedCommand": [
+        { "command": "git","arguments": "branch --set-upstream-to {{{remote}}}/{{{branch}}}"}
+      ],
+      "options": [{
+        "name": "remote",
+        "settings": {
+          "describe": "Remote name",
+          "required": true
+        }
+      },{
+        "name": "branch",
+        "settings": {
+          "describe": "New remote branch name",
+          "required": true
+        }
+      }]
     }
 
 
