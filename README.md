@@ -14,11 +14,13 @@ npm install -g git-for-humans
 ```
 
 ###List of commands
+
 ```
 hgit help
 ```
 
 ###Find command
+
 *Example*
 ```
 hgit help | grep remove
