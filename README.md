@@ -1,6 +1,6 @@
 # Git for humans
 
-#### What are "flight rules"?
+#### Motivation?
 
 Git is a mighty tool. Some time if things go wrong the syntax can be wired for newbies.
 The aim of this project to provide a wrapper for git to do cli more readable
@@ -13,13 +13,13 @@ Based on [git flight rules](https://github.com/k88hudson)
 npm install -g git-for-humans
 ```
 
-###List of commands
+### List of commands
 
 ```
 hgit help
 ```
 
-###Find command
+### Find command
 
 *Example*
 ```
@@ -32,7 +32,7 @@ hgit help | grep remove
   index.js rename branch                    Rename a different (local) branch
 ```
 
-###Detailed help for command
+### Detailed help for command
 ```
 hgit rename branch --help
 ```

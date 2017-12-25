@@ -507,6 +507,180 @@
           "required": true
         }
       }]
+    },
+    {
+      "command": "set head to track default remote branch",
+      "description": "By checking your remote branches, you can see which remote branch your HEAD is tracking. \nIn some cases, this is not the desired branch.",
+      "mappedCommand": [
+        { "command": "git","arguments": "branch -rr origin/HEAD -> origin/gh-pages origin/master"}
+      ],
+      "options": []
+    },
+    {
+      "command": "set head to track remote master",
+      "description": "Change origin/HEAD to track origin/master branch",
+      "mappedCommand": [
+        { "command": "git","arguments": "remote set-head origin --auto origin/HEAD set to master"}
+      ],
+      "options": []
+    },
+    {
+      "command": "undo rebase",
+      "description": "You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --hard ORIG_HEAD"}
+      ],
+      "options": []
+    },
+    {
+      "command": "undo merge",
+      "description": "You may have merged or rebased your current branch with a wrong branch, or you can't figure it out or finish the rebase/merge process. Git saves the original HEAD pointer in a variable called ORIG_HEAD before doing dangerous operations, so it is simple to recover your branch at the state before the rebase/merge",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --hard ORIG_HEAD"}
+      ],
+      "options": []
+    },
+    {
+      "command": "rebase without reflecting changes",
+      "description": "Unfortunately, you have to force push, if you want those changes to be reflected on the remote branch. This is because you have changed the history. The remote branch won't accept changes unless you force push. This is one of the main reasons many people use a merge workflow, instead of a rebasing workflow - large teams can get into trouble with developers force pushing. Use this with caution. A safer way to use rebase is not to reflect your changes on the remote branch at all, and instead to do the following",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout {{{branch}}}"},
+        { "command": "git","arguments": "rebase -i master"},
+        { "command": "git","arguments": "checkout master"},
+        { "command": "git","arguments": "merge --ff-only {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "New remote branch name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "combine commits",
+      "description": "Let's suppose you are working in a branch that is/will become a pull-request against master. In the simplest case when all you want to do is to combine all commits into a single one and you don't care about commit timestamps, you can reset and recommit. Make sure the master branch is up to date and all your changes committed",
+      "mappedCommand": [
+        { "command": "git","arguments": "reset --soft master"},
+        { "command": "git","arguments": "commit -am {{{message}}}"}
+      ],
+      "options": [{
+        "name": "message",
+        "settings": {
+          "describe": "Commit message",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "interactive rebase",
+      "description": "Combine commits with more control, and also to preserve timestamps, you need to do something called an interactive rebase",
+      "mappedCommand": [
+        { "command": "git","arguments": "rebase -i master"}
+      ],
+      "options": []
+    },
+    {
+      "command": "squash commits",
+      "description": "If you aren't working against another branch you'll have to rebase relative to your HEAD. If you want to squash the last 2 commits, for example, you'll have to rebase against HEAD~2. For the last 3, HEAD~3, etc",
+      "mappedCommand": [
+        { "command": "git","arguments": "rebase -i HEAD~{{commits}}"}
+      ],
+      "options": [{
+        "name": "commits",
+        "settings": {
+          "describe": "Number of commits to squash",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "safe merging",
+      "description": "Performs the merge but pretends the merge failed and does not autocommit, giving the user a chance to inspect and further tweak the merge result before committing. no-ff maintains evidence that a feature branch once existed, keeping project history consistent",
+      "mappedCommand": [
+        { "command": "git","arguments": "merge --no-ff --no-commit {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "Branch name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "merge branch into single commit",
+      "description": "Merge a branch into a single commit",
+      "mappedCommand": [
+        { "command": "git","arguments": "merge --squash {{{branch}}}"}
+      ],
+      "options": [{
+        "name": "branch",
+        "settings": {
+          "describe": "Branch name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "combine unpushed commits",
+      "description": "Combine only unpushed commits. Interactive rebase that lists only the commits that you haven't already pushed, so it will be safe to reorder/fix/squash anything in the list",
+      "mappedCommand": [
+        { "command": "git","arguments": "rebase -i @{u}"}
+      ],
+      "options": []
+    },
+    {
+      "command": "abort merge",
+      "description": "Sometimes the merge can produce problems in certain files, in those cases we can use the option abort to abort the current conflict resolution process, and try to reconstruct the pre-merge state.",
+      "mappedCommand": [
+        { "command": "git","arguments": "merge --abort"}
+      ],
+      "options": []
+    },
+    {
+      "command": "check commits merged",
+      "description": "To check if all commits on a branch are merged into another branch, you should diff between the heads (or any commits) of those branche.",
+      "mappedCommand": [
+        { "command": "git","arguments": "log --graph --left-right --cherry-pick --oneline HEAD...{{{branch}}}"}
+      ],
+      "options": [{
+        "name": "commit",
+        "settings": {
+          "describe": "Branch name, commit etc",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "list nonshared commits",
+      "description": "This will tell you if any commits are in one but not the other, and will give you a list of any nonshared between the branches.\n(Another option is to do this see \"check commits merged\").",
+      "mappedCommand": [
+        { "command": "git","arguments": "log master ^{{{branch}}} --no-merges"}
+      ],
+      "options": [{
+        "name": "commit",
+        "settings": {
+          "describe": "Branch name, commit etc",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "visual diff editor",
+      "description": "If the merges are complicated, you can use a visual diff editor:",
+      "mappedCommand": [
+        { "command": "git","arguments": "mergetool -t opendiff"}
+      ],
+      "options": []
+    },
+    {
+      "command": "save and reset",
+      "description": "If the merges are complicated, you can use a visual diff editor:",
+      "mappedCommand": [
+        { "command": "git","arguments": "mergetool -t opendiff"}
+      ],
+      "options": []
     }
 
 
