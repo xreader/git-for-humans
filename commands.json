@@ -668,19 +668,39 @@
     },
     {
       "command": "visual diff editor",
-      "description": "If the merges are complicated, you can use a visual diff editor:",
+      "description": "If the merges are complicated, you can use a visual diff editor",
       "mappedCommand": [
         { "command": "git","arguments": "mergetool -t opendiff"}
       ],
       "options": []
     },
     {
-      "command": "save and reset",
-      "description": "If the merges are complicated, you can use a visual diff editor:",
+      "command": "stash file",
+      "description": "To stash only one file from your working directory",
       "mappedCommand": [
-        { "command": "git","arguments": "mergetool -t opendiff"}
+        { "command": "git","arguments": "stash push {{{path}}}"}
       ],
-      "options": []
+      "options": [{
+        "name": "path",
+        "settings": {
+          "describe": "path to the file",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "stash with message",
+      "description": "stash with message",
+      "mappedCommand": [
+        { "command": "git","arguments": "stash save {{{message}}}"}
+      ],
+      "options": [{
+        "name": "message",
+        "settings": {
+          "describe": "Comment stash",
+          "required": true
+        }
+      }]
     }
 
 
