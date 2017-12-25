@@ -692,7 +692,7 @@
       "command": "stash with message",
       "description": "stash with message",
       "mappedCommand": [
-        { "command": "git","arguments": "stash save {{{mymessage}}}"}
+        { "command": "git","arguments": "stash save \"{{{mymessage}}}\""}
       ],
       "options": [{
         "name": "mymessage",
