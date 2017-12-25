@@ -692,10 +692,10 @@
       "command": "stash with message",
       "description": "stash with message",
       "mappedCommand": [
-        { "command": "git","arguments": "stash save {{{message}}}"}
+        { "command": "git","arguments": "stash save {{{mymessage}}}"}
       ],
       "options": [{
-        "name": "message",
+        "name": "mymessage",
         "settings": {
           "describe": "Comment stash",
           "required": true
