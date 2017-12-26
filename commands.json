@@ -748,16 +748,52 @@
       }]
     },
     {
-      "command": "delete tag",
-      "description": "Delete tag",
+      "command": "remove from git",
+      "description": "Remove a file from Git but keep the file",
       "mappedCommand": [
-        { "command": "git","arguments": "tag -d {{{tagname}}}"},
-        { "command": "git","arguments": "push origin :refs/tags/{{{tagname}}}"}
+        { "command": "git","arguments": "rm --cached  {{{filename}}}"}
       ],
       "options": [{
         "name": "filename",
         "settings": {
           "describe": "File name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "add empty directory",
+      "description": "Add an empty directory to my repository",
+      "mappedCommand": [
+        { "command": "mkdir","arguments": "{{{mydir}}}"},
+        { "command": "touch","arguments": "{{{mydir}}}/.gitkeep"}
+      ],
+      "options": [{
+        "name": "mydir",
+        "settings": {
+          "describe": "Directory path/name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "save credentials",
+      "description": "Cache a username and password for a repository",
+      "mappedCommand": [
+        { "command": "git","arguments": "config --global credential.helper cache"}
+      ],
+      "options": []
+    },
+    {
+      "command": "cache credentials",
+      "description": "Cache a username and password for a repository with timeout",
+      "mappedCommand": [
+        { "command": "git","arguments": "config --global credential.helper 'cache --timeout={{{timeout}}}'"}
+      ],
+      "options": [{
+        "name": "timeout",
+        "settings": {
+          "describe": "timeout in seconds",
           "required": true
         }
       }]
