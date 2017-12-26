@@ -18,16 +18,16 @@ module.exports = function(yargs, command){
             },
             function (args) {
 
-                console.log("arguments %s", JSON.stringify(args));
+                if (args.verbose) {
+                    console.log("arguments %s", JSON.stringify(args));
+                }
 
                 var batch = command.mappedCommand.map(function (command) {
                     command.arguments = Mustache.render(command.arguments,args);
                     return command;
                 })
 
-                console.log('executing %s', JSON.stringify(batch));
-
-                response = executer.executeBatch(batch, function () {
+                response = executer.executeBatch(batch, args.verbose, function () {
                     callback();
                 })
             }
