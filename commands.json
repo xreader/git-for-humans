@@ -734,10 +734,10 @@
       }]
     },
     {
-      "command": "rrestore file",
-      "description": "Restore a deleted file",
+      "command": "restore commited file",
+      "description": "Restore a deleted file from previous commit",
       "mappedCommand": [
-        { "command": "git","arguments": "rev-list -n 1 HEAD -- {{{filename}}}"}
+        { "command": "git","arguments": "checkout $(git rev-list -n 1 HEAD -- {{{filename}}})^ -- {{{filename}}}"}
       ],
       "options": [{
         "name": "filename",
