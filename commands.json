@@ -735,7 +735,7 @@
     },
     {
       "command": "restore commited file",
-      "description": "Restore a deleted file from previous commit",
+      "description": "Restore a deleted file from previous commit. Finds the commit when the file last existed then checkouts that file",
       "mappedCommand": [
         { "command": "git","arguments": "checkout $(git rev-list -n 1 HEAD -- {{{filename}}})^ -- {{{filename}}}"}
       ],
