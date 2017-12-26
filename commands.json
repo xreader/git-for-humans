@@ -342,7 +342,7 @@
       },{
         "name": "commit",
         "settings": {
-          "describe": "Sha of commit",
+          "describe": "SHA1 of commit",
           "required": true
         }
       }]
@@ -356,7 +356,7 @@
       "options": [{
         "name": "commit",
         "settings": {
-          "describe": "Sha of commit",
+          "describe": "SHA1 of commit",
           "required": true
         }
       }]
@@ -393,7 +393,7 @@
       },{
         "name": "commit",
         "settings": {
-          "describe": "SHA of commit",
+          "describe": "SHA1 of commit",
           "required": true
         }
       }]
