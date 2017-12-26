@@ -517,7 +517,7 @@
       "options": []
     },
     {
-      "command": "set head to track remote master",
+      "command": "track remote master",
       "description": "Change origin/HEAD to track origin/master branch",
       "mappedCommand": [
         { "command": "git","arguments": "remote set-head origin --auto origin/HEAD"}
