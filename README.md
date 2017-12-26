@@ -453,7 +453,9 @@ Cache a username and password for a
 
 #### Options:
 
+```
   --version  Show version number                                       [boolean]
   --help     Show help                                                 [boolean]
   --verbose  Show debug
+```
 
