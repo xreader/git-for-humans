@@ -562,10 +562,10 @@
       "description": "Let's suppose you are working in a branch that is/will become a pull-request against master. In the simplest case when all you want to do is to combine all commits into a single one and you don't care about commit timestamps, you can reset and recommit. Make sure the master branch is up to date and all your changes committed",
       "mappedCommand": [
         { "command": "git","arguments": "reset --soft master"},
-        { "command": "git","arguments": "commit -am {{{message}}}"}
+        { "command": "git","arguments": "commit -am \"{{{mymessage}}}\""}
       ],
       "options": [{
-        "name": "message",
+        "name": "mymessage",
         "settings": {
           "describe": "Commit message",
           "required": true
@@ -698,6 +698,51 @@
         "name": "mymessage",
         "settings": {
           "describe": "Comment stash",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "remove submodule",
+      "description": "Remove a submodule",
+      "mappedCommand": [
+        { "command": "git","arguments": "submodule deinit {{{submodule}}}"},
+        { "command": "git","arguments": "rm {{{submodule}}}"},
+        { "command": "git","arguments": "rm --cached {{{submodule}}}"},
+        { "command": "git","arguments": "-rf .git/modules/{{{submodule}}}"}
+      ],
+      "options": [{
+        "name": "submodule",
+        "settings": {
+          "describe": "Submodule name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "restore file",
+      "description": "Restore deleted not commited file",
+      "mappedCommand": [
+        { "command": "git","arguments": "checkout {{{filename}}}"}
+      ],
+      "options": [{
+        "name": "filename",
+        "settings": {
+          "describe": "File name",
+          "required": true
+        }
+      }]
+    },
+    {
+      "command": "rrestore file",
+      "description": "Restore a deleted file",
+      "mappedCommand": [
+        { "command": "git","arguments": "rev-list -n 1 HEAD -- {{{filename}}}"}
+      ],
+      "options": [{
+        "name": "filename",
+        "settings": {
+          "describe": "File name",
           "required": true
         }
       }]
