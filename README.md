@@ -10,7 +10,7 @@ Based on [git flight rules](https://github.com/k88hudson)
 
 ## Installation
 ```
-npm install -g git-for-humans
+npm install -g xreader/git-for-humans
 ```
 
 ### List of commands
