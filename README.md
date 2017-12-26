@@ -53,6 +53,12 @@ Options:
 hgit [command]
 ```
 
+### See wrapped command(s)
+
+to see what command will be executed use --describe parameter
+
+
+
 ### Commands
 
 ```
