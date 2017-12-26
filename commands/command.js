@@ -27,7 +27,7 @@ module.exports = function(yargs, command){
                     return command;
                 })
 
-                response = executer.executeBatch(batch, args.verbose, function () {
+                response = executer.executeBatch(batch, args, function () {
                     callback();
                 })
             }
