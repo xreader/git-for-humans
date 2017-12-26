@@ -362,7 +362,7 @@
       }]
     },
     {
-      "command": "reset branch to branch",
+      "command": "reset to branch",
       "description": "Discard local commits so my branch is the same as one on the server",
       "mappedCommand": [
         { "command": "git","arguments": "reset --hard origin/{{{branch}}}"}
