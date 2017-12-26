@@ -746,6 +746,21 @@
           "required": true
         }
       }]
+    },
+    {
+      "command": "delete tag",
+      "description": "Delete tag",
+      "mappedCommand": [
+        { "command": "git","arguments": "tag -d {{{tagname}}}"},
+        { "command": "git","arguments": "push origin :refs/tags/{{{tagname}}}"}
+      ],
+      "options": [{
+        "name": "filename",
+        "settings": {
+          "describe": "File name",
+          "required": true
+        }
+      }]
     }
 
 
