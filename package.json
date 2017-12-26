@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Humanized wrapper for git",
   "main": "index.js",
+  "bin": {
+    "hgit": "./index.js"
+  },
   "dependencies": {
     "mustache": "^2.3.0",
     "split": "^1.0.1",
