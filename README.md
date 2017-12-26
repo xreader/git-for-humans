@@ -281,7 +281,7 @@ Delete or remove last commit
                                             In some cases, this is not the
                                             desired branch.
 ```
-  hgit set head to track remote master                       
+  hgit track remote master                       
 ```
   Change origin/HEAD to track
                                             origin/master branch
