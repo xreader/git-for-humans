@@ -23,7 +23,7 @@ hgit help
 
 *Example*
 ```
-hgit help | grep remove
+hgit help | grep rename
 
 ```
 *output:*
