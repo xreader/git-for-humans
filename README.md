@@ -3,7 +3,7 @@
 #### Motivation?
 
 Git is a mighty tool. Some time if things go wrong the syntax can be wired for newbies.
-The aim of this project to provide a wrapper for git to do cli more readable
+The aim of this project to provide a wrapper for git to do it more readable
 
 Based on [git flight rules](https://github.com/k88hudson)
 
