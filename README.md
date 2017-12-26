@@ -451,7 +451,9 @@ Cache a username and password for a
 Cache a username and password for a
                                             repository with timeout
 
-Options:
+#### Options:
+
   --version  Show version number                                       [boolean]
   --help     Show help                                                 [boolean]
+  --verbose  Show debug
 
