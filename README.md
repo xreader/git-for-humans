@@ -28,8 +28,8 @@ hgit help | grep rename
 ```
 *output:*
 ```
-  index.js rename current branch            Rename the current (local) branch
-  index.js rename branch                    Rename a different (local) branch
+  hgit rename current branch            Rename the current (local) branch
+  hgit rename branch                    Rename a different (local) branch
 ```
 
 ### Detailed help for command
