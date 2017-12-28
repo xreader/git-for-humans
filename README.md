@@ -58,6 +58,38 @@ hgit [command]
 to see what command will be executed use --describe parameter
 
 
+## How to add new commands
+
+You can add new commands in config file `commands.json` 
+
+**Example for a new command**
+
+```json
+{
+      "command": "remove submodule",
+      "description": "Remove a submodule",
+      "mappedCommand": [
+        { "command": "git","arguments": "submodule deinit {{{submodule}}}"},
+        { "command": "git","arguments": "rm {{{submodule}}}"},
+        { "command": "git","arguments": "rm --cached {{{submodule}}}"},
+        { "command": "git","arguments": "-rf .git/modules/{{{submodule}}}"}
+      ],
+      "options": [{
+        "name": "submodule",
+        "settings": {
+          "describe": "Submodule name",
+          "required": true
+        }
+      }]
+    }
+```
+
+**where**
+
+* **command** - command name (multi-word commands are supported)
+* **description** - text will be showed with --help option
+* **mappedCommand** - command(s) to be executed by hgit. If command needs arguments they should be embedded this way {{{timeout}}}
+* **options** - (optional) if command needs options add it here. Option name have to be same as in `mappedCommand` section. Currently only `required` arguments supported 
 
 ### Commands
 
