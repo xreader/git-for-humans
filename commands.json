@@ -703,16 +703,16 @@
       }]
     },
     {
-      "command": "remove submodule",
+      "command": "delete submodule",
       "description": "Remove a submodule",
       "mappedCommand": [
-        { "command": "git","arguments": "submodule deinit {{{submodule}}}"},
-        { "command": "git","arguments": "rm {{{submodule}}}"},
-        { "command": "git","arguments": "rm --cached {{{submodule}}}"},
-        { "command": "git","arguments": "-rf .git/modules/{{{submodule}}}"}
+        { "command": "git","arguments": "submodule deinit {{{mysubmodule}}}"},
+        { "command": "git","arguments": "rm {{{mysubmodule}}}"},
+        { "command": "git","arguments": "rm --cached {{{mysubmodule}}}"},
+        { "command": "git","arguments": "-rf .git/modules/{{{mysubmodule}}}"}
       ],
       "options": [{
-        "name": "submodule",
+        "name": "mysubmodule",
         "settings": {
           "describe": "Submodule name",
           "required": true

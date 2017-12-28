@@ -55,7 +55,21 @@ hgit [command]
 
 ### See wrapped command(s)
 
-to see what command will be executed use --describe parameter
+to see what command will be executed use `--describe` parameter
+
+example
+
+```bash
+hgit delete submodule --describe --submodule my_submodule_name
+```
+
+output
+```git
+git submodule deinit my_submodule_name
+git rm my_submodule_name
+git rm --cached my_submodule_name
+git -rf .git/modules/my_submodule_name
+```
 
 
 ## How to add new commands
@@ -66,7 +80,7 @@ You can add new commands in config file `commands.json`
 
 ```json
 {
-      "command": "remove submodule",
+      "command": "delete submodule",
       "description": "Remove a submodule",
       "mappedCommand": [
         { "command": "git","arguments": "submodule deinit {{{submodule}}}"},
