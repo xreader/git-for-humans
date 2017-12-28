@@ -29,7 +29,7 @@ function execute (command, arguments, options, callback) {
         child = exec(command);
         child.stdout.pipe(process.stdout);
         child.on('close', function (code) {
-            if (verbose) {
+            if (options.verbose) {
                 console.log('child process exited with code code=%s', code);
             }
             callback(code);
