@@ -11,7 +11,10 @@
     "split": "^1.0.1",
     "yargs": "^10.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "commander": "^2.12.2",
+    "minimist": "^1.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

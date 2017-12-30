@@ -12,7 +12,7 @@ var commands = require('./commands').commands;
 
 commands.forEach(function (cmd) {
     command(yargs, cmd);
-})
+});
 
 
 yargs.help().argv
