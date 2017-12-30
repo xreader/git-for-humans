@@ -16,14 +16,14 @@ npm install -g xreader/git-for-humans
 ### List of commands
 
 ```
-hgit help
+hgit --help
 ```
 
 ### Find command
 
 *Example*
 ```
-hgit help | grep rename
+hgit rename --help
 
 ```
 *output:*
@@ -53,14 +53,14 @@ Options:
 hgit [command]
 ```
 
-### See wrapped command(s)
+### See underlying command(s)
 
 to see what command will be executed use `--describe` parameter
 
 example
 
 ```bash
-hgit delete submodule --describe --submodule my_submodule_name
+hgit delete submodule --describe --mysubmodule my_submodule_name
 ```
 
 output
