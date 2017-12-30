@@ -7,14 +7,11 @@
     "hgit": "./index.js"
   },
   "dependencies": {
+    "minimist": "^1.2.0",
     "mustache": "^2.3.0",
-    "split": "^1.0.1",
-    "yargs": "^10.0.3"
+    "split": "^1.0.1"
   },
-  "devDependencies": {
-    "commander": "^2.12.2",
-    "minimist": "^1.2.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
