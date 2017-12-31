@@ -30,10 +30,13 @@ handle = function (matchedCommands, argv) {
  * @param argv
  */
 help = function (matchedCommands, argv) {
-    console.log('Commands:\n')
+    console.log('Commands:\n');
     matchedCommands.forEach(function (command) {
-        console.log('\t%s %s', command.command, command.options.map(function (option) { return '--' + option.name + ' ' + '<' + option.settings.describe + '>'}).join(' '));
-        console.log('\n%s\n', command.description);
+        console.log('%s\n', command.command);
+        console.log('%s\n', command.description);
+        console.log('\tusage\t\thgit %s %s', command.command, command.options.map(function (option) { return '--' + option.name + ' ' + '<' + option.settings.describe + '>'}).join(' '));
+        command.options.length && console.log('\n\tparameters\n%s', command.options.map(function (option) { return '\t\t\t--' + option.name + '\t' + option.settings.describe}).join('\n'));
+        console.log('\n');
     });
 }
 
