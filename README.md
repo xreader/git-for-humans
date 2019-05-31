@@ -2,7 +2,7 @@
 
 #### Motivation?
 
-Git is a mighty tool. Some time if things go wrong the syntax can be wired for newbies.
+Git is a mighty tool. Some time if things go wrong the syntax can be weird for newbies.
 The aim of this project to provide a wrapper for git to do it more readable
 
 Based on [git flight rules](https://github.com/k88hudson/git-flight-rules)
